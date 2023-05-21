@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.content {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  color: #333333;
+}
+
+hr {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.writing-area {
+  width: 100%;
+  min-height: 30px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  box-sizing: border-box;
+  resize: none;
+  outline: none; /* Remove default outline */
+  transition: border-color 0.2s ease-in-out; /* Add transition effect for border color */
+}
+
+.writing-area:focus {
+  border-color: #007bff; /* Set focus border color */
+}
+
+.text-area {
+  width: 100%;
+  min-height: 300px;
+  resize: none;
+  border: none;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px;
+}
+
+p:last-child {
+  font-size: 12px;
+  margin-top: 16px;
+}
