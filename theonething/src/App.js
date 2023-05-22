@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Auth } from 'aws-amplify';
 
 const App = () => {
   const [twoYearGoal, setTwoYearGoal] = useState('');
@@ -8,6 +9,20 @@ const App = () => {
   const [weeklyGoal, setWeeklyGoal] = useState('');
   const [dailyGoal, setDailyGoal] = useState('');
   const [rightNow, setRightNow] = useState('');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const checkUser = async () => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      setUser(user);
+    } catch (error) {
+      setUser(null);
+    }
+  };
 
   const handleTwoYearGoalChange = (event) => {
     setTwoYearGoal(event.target.value);
@@ -33,8 +48,36 @@ const App = () => {
     setRightNow(event.target.value);
   };
 
+  const handleLogin = async () => {
+    try {
+      await Auth.signIn('username', 'password');
+      checkUser();
+    } catch (error) {
+      console.log('Login error:', error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await Auth.signOut();
+      checkUser();
+    } catch (error) {
+      console.log('Logout error:', error);
+    }
+  };
+
   return (
     <div className="container">
+      <header>
+        <h1>The One Thing App</h1>
+        <div>
+          {user ? (
+            <button className="login-button" onClick={handleLogout}>Logout</button>
+          ) : (
+            <button className="login-button" onClick={handleLogin}>Login</button>
+          )}
+        </div>
+      </header>
       <div className="content">
         <div className="segment">
           <h1>Two-Year Goal</h1>
